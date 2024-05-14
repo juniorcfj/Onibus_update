@@ -7,6 +7,9 @@ class Viagem {
     private $hora_termino;
     private $onibus_id; 
     private $motorista_id;
+    private $status; // Novo atributo para o status da viagem
+
+    const STATUS_CONCLUIDA = 'concluida';
 
     public function __construct($viagem_id, $data_viagem, $hora_inicio, $hora_termino, $onibus_id, $motorista_id) {
         $this->viagem_id = $viagem_id;
@@ -15,6 +18,7 @@ class Viagem {
         $this->hora_termino = $hora_termino;
         $this->onibus_id = $onibus_id;
         $this->motorista_id = $motorista_id;
+        $this->status = ''; // Inicializa o status como vazio ou um valor padrão
     }
 
     public function getViagemID() {
@@ -57,6 +61,19 @@ class Viagem {
     }
     public function setMotoristaID($m) {
         $this->motorista_id = $m;
+    }
+
+    public function getStatus() {
+        return $this->status;
+    }
+    public function setStatus($s) {
+        $this->status = $s;
+    }
+
+    // Novo método para finalizar a viagem
+    public function finalizarViagem($hora_termino) {
+        $this->setHoraTermino($hora_termino);
+        $this->setStatus(self::STATUS_CONCLUIDA);
     }
 }
 
