@@ -59,6 +59,15 @@ class ViagemDAO {
 
         $stmt->execute();
     }
+
+    public function iniciarViagem($id) {
+        $sql = 'UPDATE viagem SET status = ? WHERE viagem_id = ?';
+        $stmt = Conexao::getConn()->prepare($sql);
+        $stmt->bindValue(1, 'iniciada');
+        $stmt->bindValue(2, $id);
+
+        $stmt->execute();
+    }
 }
 
 ?>
