@@ -25,6 +25,18 @@ class ViagemDAO{
         } else {
             return [];
         }
+          public function finalizarViagem($id) {
+        $sql = 'UPDATE viagem SET status = ? WHERE viagem_id = ?';
+        $stmt = Conexao::getConn()->prepare($sql);
+        $stmt->bindValue(1, 'finalizada');
+        $stmt->bindValue(2, $id);
+
+        $stmt->execute();
+    }
+    
+
+}
+
     }
 
     public function update(Viagem $viagem) {
